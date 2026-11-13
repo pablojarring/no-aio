@@ -10,12 +10,16 @@ const domains = readFileSync(new URL("../domains.txt", import.meta.url), "utf8")
 const hosts = domains.map((d) => `https://www.${d}/*`);
 const searchPages = domains.map((d) => `https://www.${d}/search*`);
 
+const pkg = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+
 const manifest = {
   manifest_version: 3,
-  name: "No AIO – Oculta el AI Overview de Google",
-  short_name: "No AIO",
-  version: "1.0.0",
-  description: "Oculta el AI Overview (y la pestaña Modo IA) de las búsquedas de Google, o fuerza el filtro Web (udm=14).",
+  name: "__MSG_extName__",
+  short_name: "__MSG_extShortName__",
+  description: "__MSG_extDescription__",
+  default_locale: "en",
+  version: pkg.version,
+  homepage_url: pkg.homepage,
   icons: { 16: "icons/16.png", 32: "icons/32.png", 48: "icons/48.png", 128: "icons/128.png" },
   action: { default_popup: "src/popup.html", default_title: "No AIO" },
   background: { service_worker: "src/background.js" },

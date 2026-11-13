@@ -1,0 +1,17 @@
+name: "Otro error / Other bug"
+description: "Algo funciona mal o se ocultó algo que no debía"
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: "¿Qué pasó? / What happened?"
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Pasos para reproducirlo / Steps to reproduce"
+  - type: input
+    id: version
+    attributes:
+      label: "Versión de No AIO y de Chrome / No AIO and Chrome version"

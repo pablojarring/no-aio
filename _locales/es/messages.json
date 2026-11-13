@@ -1,0 +1,13 @@
+{
+  "extName": { "message": "No AIO – Oculta el resumen de IA de Google" },
+  "extShortName": { "message": "No AIO" },
+  "extDescription": { "message": "Oculta la Visión general creada por IA y el Modo IA de Google, o busca siempre con el filtro Web. Open source y sin rastreo." },
+  "on": { "message": "Activada" },
+  "mode": { "message": "Modo" },
+  "modeHide": { "message": "Ocultar" },
+  "modeHideDesc": { "message": "Búsqueda normal, solo se esconde el bloque de IA." },
+  "modeWeb": { "message": "Web (udm=14)" },
+  "modeWebDesc": { "message": "Abre siempre el filtro Web: solo enlaces, sin IA ni bloques de compras." },
+  "hideAiMode": { "message": "Ocultar la pestaña “Modo IA”" },
+  "footer": { "message": "Open source · Sin rastreo" }
+}

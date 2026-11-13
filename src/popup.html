@@ -1,33 +1,43 @@
 <!doctype html>
-<html lang="es">
+<html>
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <h1>No AIO</h1>
-
-  <label class="row">
-    <span>Activada</span>
-    <input type="checkbox" id="enabled" />
-  </label>
+  <header>
+    <img src="../icons/48.png" alt="" width="32" height="32" />
+    <div class="brand">
+      <strong>No AIO</strong>
+      <span id="state" class="state"></span>
+    </div>
+    <label class="switch" title="On/Off">
+      <input type="checkbox" id="enabled" />
+      <span></span>
+    </label>
+  </header>
 
   <fieldset id="modes">
-    <legend>Modo</legend>
+    <legend data-i18n="mode"></legend>
     <label class="opt">
       <input type="radio" name="mode" value="hide" />
-      <span><b>Ocultar</b><small>Búsqueda normal, solo se esconde el bloque de IA.</small></span>
+      <span><b data-i18n="modeHide"></b><small data-i18n="modeHideDesc"></small></span>
     </label>
     <label class="opt">
       <input type="radio" name="mode" value="web" />
-      <span><b>Web (udm=14)</b><small>Redirige al filtro Web: sin IA, sin anuncios de shopping ni paneles.</small></span>
+      <span><b data-i18n="modeWeb"></b><small data-i18n="modeWebDesc"></small></span>
     </label>
   </fieldset>
 
-  <label class="row">
-    <span>Ocultar pestaña "Modo IA"</span>
-    <input type="checkbox" id="hideAiMode" />
+  <label class="row" id="aiModeRow">
+    <span data-i18n="hideAiMode"></span>
+    <span class="switch small"><input type="checkbox" id="hideAiMode" /><span></span></span>
   </label>
+
+  <footer>
+    <a href="https://github.com/pablojarring/no-aio" target="_blank" rel="noopener" data-i18n="footer"></a>
+    <span id="version"></span>
+  </footer>
 
   <script src="popup.js"></script>
 </body>

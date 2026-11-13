@@ -1,0 +1,29 @@
+name: "El resumen de IA sigue apareciendo / AI Overview still visible"
+description: "Google cambió algo y No AIO dejó de ocultarlo"
+labels: ["detection"]
+body:
+  - type: input
+    id: domain
+    attributes:
+      label: "Dominio de Google / Google domain"
+      placeholder: "google.com.mx"
+    validations: { required: true }
+  - type: input
+    id: label
+    attributes:
+      label: "Título exacto del bloque de IA / Exact title of the AI block"
+      description: "Cópialo tal cual aparece, p. ej. 'Visión general creada por IA'"
+    validations: { required: true }
+  - type: dropdown
+    id: mode
+    attributes:
+      label: "Modo / Mode"
+      options: ["Ocultar / Hide", "Web (udm=14)"]
+  - type: input
+    id: version
+    attributes:
+      label: "Versión de No AIO y de Chrome / No AIO and Chrome version"
+  - type: textarea
+    id: extra
+    attributes:
+      label: "Captura o HTML del bloque (opcional) / Screenshot or block HTML (optional)"

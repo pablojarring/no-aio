@@ -1,0 +1,13 @@
+{
+  "extName": { "message": "No AIO – Hide Google AI Overviews" },
+  "extShortName": { "message": "No AIO" },
+  "extDescription": { "message": "Hide Google's AI Overview and AI Mode tab, or always search with the Web filter. Open source, no tracking." },
+  "on": { "message": "On" },
+  "mode": { "message": "Mode" },
+  "modeHide": { "message": "Hide" },
+  "modeHideDesc": { "message": "Normal search, only the AI block is hidden." },
+  "modeWeb": { "message": "Web (udm=14)" },
+  "modeWebDesc": { "message": "Always open the Web filter: plain links, no AI, no shopping blocks." },
+  "hideAiMode": { "message": "Hide the “AI Mode” tab" },
+  "footer": { "message": "Open source · No tracking" }
+}

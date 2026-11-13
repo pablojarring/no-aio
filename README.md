@@ -1,54 +1,62 @@
-# No AIO: oculta el AI Overview de Google
+<p align="center">
+  <img src="branding/icon.svg" width="96" alt="No AIO" />
+</p>
 
-Extensión de Chrome (Manifest V3) que quita de las búsquedas de Google el **AI Overview** ("Visión general creada por IA") y, si quieres, la pestaña **Modo IA**.
+<h1 align="center">No AIO</h1>
+<p align="center"><b>Google search, minus the AI summary.</b><br/>Google, sin el resumen de IA.</p>
 
-## ¿Por qué una extensión?
+<p align="center">
+  <a href="https://github.com/pablojarring/no-aio/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/pablojarring/no-aio/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-8B5CF6"></a>
+  <img alt="Manifest V3" src="https://img.shields.io/badge/manifest-v3-0F172A">
+  <img alt="No tracking" src="https://img.shields.io/badge/tracking-none-F43F5E">
+</p>
 
-Google no tiene ninguna opción para desactivarlo. Su página de ayuda dice que AI Overviews es una función central de Search y que no se puede apagar. El toggle de Search Labs solo te saca de los experimentos, no quita el AIO. La única salida oficial es el filtro **Web** (`&udm=14`), y hay que elegirlo en cada búsqueda.
+<p align="center"><img src="store/assets/screenshot-2-en.png" width="760" alt="Before and after" /></p>
 
-## Modos
+Open-source Chrome extension that removes Google's **AI Overview** (*Visión general creada por IA*) and, optionally, the **AI Mode** tab from Google Search. Google offers no setting to turn AI Overviews off; this is that switch.
 
-| Modo | Qué hace | Pros / contras |
+> 🇪🇸 Extensión open source que quita el resumen de IA de Google. Google no tiene una opción para desactivarlo, así que No AIO es ese interruptor. [Ver sección en español ↓](#español)
+
+## Modes
+
+| Mode | What it does | Trade-off |
 |---|---|---|
-| **Ocultar** (por defecto) | Carga la búsqueda normal ("Todo") y esconde el bloque de IA en cuanto aparece | Conservas imágenes, videos, "Más preguntas" y el panel lateral. Si Google cambia el título del bloque, hay que actualizar la lista de textos. |
-| **Web (udm=14)** | Redirige cada búsqueda al filtro Web, así Google ni genera el AIO | Más robusto y sin anuncios de shopping, pero solo muestra enlaces azules. La pestaña "Todo" te devuelve a Web. |
+| **Hide** (default) | Loads the normal "All" results and hides the AI block as it streams in | Keeps images, videos, "People also ask", side panel |
+| **Web (udm=14)** | Opens every search in Google's own Web filter, so no AI summary is generated | Most robust, but plain links only. Off by default |
 
-Las demás pestañas (Imágenes, Noticias, etc.) siguen funcionando en ambos modos.
+## Install
 
-## Instalación (modo desarrollador)
+- **Chrome Web Store:** *coming soon*
+- **From source:** `git clone`, then go to `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and select the folder.
 
-1. `npm install && npm run build` (genera `manifest.json`, que ya viene incluido)
-2. Abre `chrome://extensions` y activa **Modo de desarrollador**
-3. Haz clic en **Cargar descomprimida** y elige la carpeta del repo
-4. Fija el ícono y elige el modo en el popup
+## How it works
 
-## Cómo funciona
+- `src/detector.js` finds headings whose exact text is an AI Overview title (10 languages, `AIO_LABELS`). It then climbs to the highest ancestor that does **not** contain the organic results (`#rso`, `#center_col`, `#rhs`). No reliance on Google's obfuscated class names.
+- `src/content.js` runs at `document_start` with a `MutationObserver`, because the AI block streams in after the first paint.
+- `rules/udm14.json` is a `declarativeNetRequest` ruleset. It adds `udm=14` only to searches without an existing filter, and the service worker enables it only in Web mode.
+- `domains.txt` holds Google's 187 official domains ([source](https://www.google.com/supported_domains)), from which `manifest.json` is generated.
 
-- **`src/detector.js`** busca los títulos (`h1–h3`, `role="heading"`) cuyo texto sea exactamente el del AIO en algún idioma (`AIO_LABELS`). Desde ahí sube hasta el ancestro más alto que **no** contenga los resultados (`#rso`, `#center_col`, `#rhs`) y oculta ese bloque. No depende de las clases ofuscadas de Google, que cambian seguido.
-- **`src/content.js`** corre en `document_start` y usa un `MutationObserver`, porque Google carga el AIO por streaming después del HTML inicial.
-- **`rules/udm14.json`** es un ruleset de `declarativeNetRequest`. La regla 1 deja pasar las URLs que ya tienen `udm`/`tbm` y la regla 2 agrega `udm=14` al resto. El service worker lo activa solo en el modo Web.
-- **`domains.txt`** tiene los 187 dominios de [google.com/supported_domains](https://www.google.com/supported_domains). Los content scripts no aceptan comodines en el TLD, así que `scripts/build-manifest.mjs` genera los permisos a partir de esta lista.
+## Privacy
 
-## Si deja de funcionar
+No data collected, no network requests, no remote code. See [PRIVACY.md](PRIVACY.md).
 
-Google cambia el DOM con frecuencia. Si el AIO vuelve a aparecer:
+## Contributing
 
-1. Clic derecho sobre el título del bloque → Inspeccionar, y copia el texto exacto
-2. Agrégalo en minúsculas a `AIO_LABELS` en `src/detector.js`
-3. Agrega un caso en `test/detector.test.mjs` y corre `npm test`
+AI Overview titles in new languages and popup translations are the most useful contributions. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Mientras tanto, el modo **Web** sigue funcionando porque no depende del DOM.
+```bash
+npm install && npm test
+```
 
-## Scripts
+## Español
 
-- `npm run build`: regenera `manifest.json`
-- `npm test`: tests de detección con jsdom (incluye la estructura real de nov 2026)
-- `npm run zip`: empaqueta para subir a la Chrome Web Store
+**Modos:** *Ocultar* deja la búsqueda normal y esconde solo el bloque de IA. *Web (udm=14)* abre siempre el filtro Web de Google, así que el resumen ni se genera.
 
-## Privacidad
+**Si el resumen vuelve a aparecer:** Google cambió el título o el DOM. Abre un issue con la plantilla "El resumen de IA sigue apareciendo", o agrega el título exacto a `AIO_LABELS` en `src/detector.js` y manda un PR.
 
-No recolecta ni envía datos. Solo guarda tus 3 preferencias en `chrome.storage.sync`.
+**Privacidad:** no recolecta nada. Ver [PRIVACY.md](PRIVACY.md).
 
-## Licencia
+---
 
-MIT
+Made by **Oniria** · MIT License · Not affiliated with or endorsed by Google. "Google" is a trademark of Google LLC.

@@ -1,9 +1,60 @@
-body { font: 13px system-ui, sans-serif; width: 280px; margin: 0; padding: 12px 14px; color: #202124; }
-h1 { font-size: 15px; margin: 0 0 10px; }
-.row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
-fieldset { border: 1px solid #dadce0; border-radius: 8px; margin: 8px 0; padding: 6px 10px; }
-legend { padding: 0 4px; color: #5f6368; }
-.opt { display: flex; gap: 8px; align-items: flex-start; padding: 5px 0; }
-.opt span { display: flex; flex-direction: column; }
-.opt small { color: #5f6368; }
-fieldset:disabled { opacity: .5; }
+:root {
+  --ink: #0f172a;
+  --paper: #ffffff;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --violet: #8b5cf6;
+  --violet-soft: #f5f3ff;
+  --rose: #f43f5e;
+}
+* { box-sizing: border-box; }
+body {
+  font: 13px/1.4 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  width: 300px; margin: 0; color: var(--ink); background: var(--paper);
+}
+header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px; background: var(--ink); color: #f8fafc;
+}
+header img { border-radius: 8px; }
+.brand { display: flex; flex-direction: column; flex: 1; }
+.brand strong { font-size: 15px; letter-spacing: .2px; }
+.state { font-size: 11px; color: #a5b4fc; }
+.state.off { color: #94a3b8; }
+
+fieldset { border: 0; margin: 0; padding: 14px 16px 4px; }
+fieldset:disabled { opacity: .45; }
+legend { float: left; width: 100%; font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); padding: 0; margin-bottom: 8px; }
+legend + * { clear: both; }
+.opt {
+  display: flex; gap: 10px; align-items: flex-start; padding: 10px; margin-bottom: 6px;
+  border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
+}
+.opt:has(input:checked) { border-color: var(--violet); background: var(--violet-soft); }
+.opt input { accent-color: var(--violet); margin-top: 2px; }
+.opt span { display: flex; flex-direction: column; gap: 2px; }
+.opt small { color: var(--muted); }
+
+.row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 16px 12px; cursor: pointer; }
+.row.disabled { opacity: .45; }
+
+.switch { position: relative; display: inline-block; width: 38px; height: 22px; flex: none; }
+.switch.small { width: 32px; height: 18px; }
+.switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.switch > span { position: absolute; inset: 0; background: #475569; border-radius: 999px; }
+.switch > span::before {
+  content: ""; position: absolute; width: calc(100% / 2 - 2px); aspect-ratio: 1; left: 3px; top: 50%;
+  transform: translateY(-50%); background: #fff; border-radius: 50%;
+}
+/* Animaciones solo tras el primer render, para que no "parpadeen" al abrir. */
+body.ready .switch > span, body.ready .switch > span::before { transition: .15s; }
+.switch.small > span { background: #cbd5e1; }
+.switch input:checked + span { background: var(--violet); }
+.switch input:checked + span::before { left: calc(100% - 50% + 1px); }
+
+footer {
+  display: flex; justify-content: space-between; padding: 10px 16px; border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--muted);
+}
+footer a { color: var(--violet); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
