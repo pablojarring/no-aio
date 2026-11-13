@@ -288,10 +288,10 @@ def screenshot_uni():
     return f"""<div class="abs glow grid" style="inset:0"></div>
 <div class="abs" style="left:80px;top:52px;display:flex;align-items:center;gap:14px">
 <div style="width:46px;height:46px">{ICON}</div><div class="word" style="font-size:40px">No AIO</div></div>
-<div class="abs" style="left:80px;top:136px">{serp_state(500, True)}</div>
-<div class="abs" style="left:608px;top:364px;filter:drop-shadow(0 10px 24px rgba(124,58,237,.5))">{arrow}</div>
-<div class="abs" style="left:700px;top:136px;box-shadow:0 0 0 3px {VIOLET};border-radius:18px">{serp_state(500, False)}</div>
-<div class="abs" style="left:80px;right:80px;top:690px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">{chips(LABELS)}</div>"""
+<div class="abs" style="left:80px;top:180px">{serp_state(500, True)}</div>
+<div class="abs" style="left:608px;top:408px;filter:drop-shadow(0 10px 24px rgba(124,58,237,.5))">{arrow}</div>
+<div class="abs" style="left:700px;top:180px;box-shadow:0 0 0 3px {VIOLET};border-radius:18px">{serp_state(500, False)}</div>
+"""
 
 def small_tile_uni():
     return f"""<div class="abs glow grid" style="inset:0"></div>
