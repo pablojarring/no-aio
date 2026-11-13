@@ -1,13 +1,13 @@
 # Store listing: textos para pegar
 
-Configura **inglés** como idioma por defecto y agrega como traducciones **español, alemán, ruso, japonés e hindi**. En la ficha de cada idioma sube sus 4 capturas `screenshot-1..4-<lang>.png` y sus promo tiles `-<lang>`. Códigos: `en`, `es`, `de`, `ru`, `ja`, `hi`.
+Configura **inglés** como idioma por defecto y agrega como traducciones **español, alemán, ruso, japonés e hindi**. En la ficha de cada idioma sube sus 4 capturas `screenshot-1..4-<lang>.png`. Las dos imágenes promocionales son universales. Todas las imágenes son PNG de 24 bits sin alfa, como pide la tienda. Códigos: `en`, `es`, `de`, `ru`, `ja`, `hi`.
 
 | Campo | Valor |
 |---|---|
 | Categoría | Productivity → Tools *(alternativa: Make Chrome Yours → Functionality)* |
 | Ícono de la tienda | `assets/store-icon-128.png` |
-| Promo tile pequeño (440×280) | `assets/promo-small-440x280-<lang>.png` |
-| Marquee (1400×560, opcional) | `assets/promo-marquee-1400x560-<lang>.png` |
+| Promo tile pequeño (440×280) | `assets/promo-small-440x280.png` (universal, una para todos los idiomas) |
+| Marquee (1400×560, opcional) | `assets/promo-marquee-1400x560.png` (universal) |
 | Capturas (1280×800) | `assets/screenshot-1/2/3/4-<lang>.png` |
 | Sitio web oficial | `https://github.com/pablojarring/no-aio` |
 | URL de soporte | `https://github.com/pablojarring/no-aio/issues` |

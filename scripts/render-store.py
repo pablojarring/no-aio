@@ -218,31 +218,69 @@ def s4(c, lang):
 <svg width="32" height="32" viewBox="0 0 16 16" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
 <div style="color:#fff;font:600 19px Inter,sans-serif">{REPO}</div></div>"""
 
-# Promo tiles
-def small_tile(c, lang):
-    return f"""<div class="abs" style="inset:0;background:{INK}"></div>
-<div class="abs" style="inset:0;background:radial-gradient(400px 300px at 100% 0%,rgba(124,58,237,.55),transparent 65%)"></div>
-<div class="abs" style="left:32px;top:34px;width:72px;height:72px">{ICON}</div>
-<div class="abs h" style="left:32px;top:128px;font-size:{hs(c,44)};color:#fff;width:380px">{c['tag']}</div>
-<div class="abs foot" style="left:32px;bottom:30px;color:#CBD5E1">No AIO</div>
-<div class="abs" style="right:28px;bottom:24px;transform:scale(.72);transform-origin:bottom right">{strike_label(c)}</div>"""
+# Promo tiles: universales (sin texto de idioma salvo la marca).
+LABELS = ["AI Overview", "Visión general creada por IA", "Übersicht mit KI", "Обзор от ИИ", "AI による概要", "AI जवाब"]
+MULTI = "Inter, 'Noto Sans CJK JP', Deva, sans-serif"
+UNI_CSS = f"""
+.chip{{display:inline-flex;align-items:center;gap:8px;position:relative;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.16);color:#E2E8F0;font:600 15px/1 {MULTI};white-space:nowrap}}
+.chip::after{{content:"";position:absolute;left:8px;right:8px;top:50%;height:3px;background:{ROSE};border-radius:3px;transform:rotate(-5deg)}}
+.glow{{background:radial-gradient(60% 90% at 100% 0%,rgba(124,58,237,.55),transparent 70%),radial-gradient(50% 70% at 0% 100%,rgba(124,58,237,.18),transparent 70%),{INK}}}
+.grid{{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:40px 40px}}
+.word{{font-family:Brico,sans-serif;font-weight:800;letter-spacing:-.04em;color:#fff;line-height:.9}}
+.sk{{background:#E2E8F0;border-radius:6px}}
+"""
+SPARK_SM = SPARK.replace('width="20" height="20"', 'width="14" height="14"')
 
-def marquee(c, lang):
-    return f"""<div class="abs" style="inset:0;background:{INK}"></div>
-<div class="abs" style="inset:0;background:radial-gradient(900px 600px at 100% 0%,rgba(124,58,237,.5),transparent 60%)"></div>
-<div class="abs foot" style="left:80px;top:64px;color:#fff;font-size:20px"><i style="width:40px;height:40px">{ICON}</i>No AIO</div>
-<h1 class="abs h" style="left:80px;top:150px;width:560px;font-size:{hs(c,80)};color:#fff">{c['h1']}</h1>
-<div class="abs" style="left:80px;top:420px">{strike_label(c)}</div>
-<div class="abs" style="left:720px;top:90px;width:760px">{frame(f'after-wide-{lang}.png')}</div>"""
+def chips(labels, gap=10):
+    return "".join(f'<span class="chip">{SPARK_SM}{t}</span>' for t in labels)
+
+def serp(width):
+    """Página de resultados abstracta: el bloque de IA colapsado y los resultados arriba."""
+    result = lambda w1, w2: f"""<div style="display:flex;gap:12px;margin-bottom:20px">
+<div style="width:22px;height:22px;border-radius:50%;background:#E2E8F0;flex:none"></div>
+<div style="flex:1"><div class="sk" style="width:38%;height:8px;margin-bottom:8px"></div>
+<div style="width:{w1}%;height:13px;border-radius:6px;background:{VIOLET};margin-bottom:9px"></div>
+<div class="sk" style="width:96%;height:8px;margin-bottom:6px"></div><div class="sk" style="width:{w2}%;height:8px"></div></div></div>"""
+    return f"""<div style="width:{width}px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.08)">
+<div style="height:34px;background:#F1F5F9;display:flex;gap:8px;align-items:center;padding-left:16px">
+<b style="width:11px;height:11px;border-radius:50%;background:#CBD5E1;display:block"></b><b style="width:11px;height:11px;border-radius:50%;background:#CBD5E1;display:block"></b><b style="width:11px;height:11px;border-radius:50%;background:#CBD5E1;display:block"></b></div>
+<div style="padding:26px 32px 10px">
+<div style="height:44px;border-radius:22px;border:1.5px solid #E2E8F0;display:flex;align-items:center;gap:12px;padding:0 18px;margin-bottom:20px;box-shadow:0 2px 8px rgba(15,23,42,.06)">
+<svg width="18" height="18" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7" fill="none" stroke="#94A3B8" stroke-width="2.6"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="#94A3B8" stroke-width="2.6" stroke-linecap="round"/></svg>
+<div class="sk" style="width:46%;height:9px"></div></div>
+<div style="display:flex;gap:18px;margin-bottom:20px"><div style="width:34px;height:8px;border-radius:4px;background:{INK}"></div><div class="sk" style="width:42px;height:8px"></div><div class="sk" style="width:38px;height:8px"></div><div class="sk" style="width:46px;height:8px"></div></div>
+<div style="position:relative;height:30px;border:2px dashed {ROSE};border-radius:12px;display:flex;align-items:center;gap:10px;padding:0 14px;margin-bottom:24px;background:rgba(244,63,94,.05)">
+{SPARK_SM.replace(VIOLET_L, '#FDA4AF')}<div style="flex:1;height:3px;background:{ROSE};border-radius:3px;opacity:.7"></div></div>
+{result(62, 70)}{result(54, 82)}{result(68, 60)}</div></div>"""
+
+def small_tile_uni():
+    return f"""<div class="abs glow grid" style="inset:0"></div>
+<div class="abs" style="left:36px;top:40px;display:flex;align-items:center;gap:16px">
+<div style="width:68px;height:68px;filter:drop-shadow(0 10px 24px rgba(124,58,237,.45))">{ICON}</div>
+<div class="word" style="font-size:58px">No AIO</div></div>
+<div class="abs" style="left:36px;top:140px;width:380px;display:flex;flex-wrap:wrap;gap:9px">{chips(LABELS[:1] + LABELS[2:5])}</div>
+<div class="abs" style="left:36px;right:36px;bottom:30px;height:2px;background:linear-gradient(90deg,{VIOLET},transparent)"></div>"""
+
+def marquee_uni():
+    return f"""<div class="abs glow grid" style="inset:0"></div>
+<div class="abs" style="left:100px;top:120px;width:96px;height:96px;filter:drop-shadow(0 16px 36px rgba(124,58,237,.5))">{ICON}</div>
+<div class="abs word" style="left:96px;top:236px;font-size:132px">No AIO</div>
+<div class="abs" style="left:100px;top:396px;width:620px;display:flex;flex-wrap:wrap;gap:10px">{chips(LABELS)}</div>
+<div class="abs" style="left:770px;top:70px;transform:rotate(-2deg)">{serp(540)}</div>"""
 
 def render(name, body, w, h, c):
     html = SRC / f"{name}.html"
-    html.write_text(f"<!doctype html><meta charset=utf-8><link rel=stylesheet href='{POPUP_CSS}'><style>{base_css(c)}</style>"
+    html.write_text(f"<!doctype html><meta charset=utf-8><link rel=stylesheet href='{POPUP_CSS}'><style>{base_css(c)}{UNI_CSS}</style>"
                     f"<body style='width:{w}px;height:{h}px'>{body}</body>")
     subprocess.run([CHROME, "--headless=new", "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--virtual-time-budget=2500",
                     f"--window-size={w},{h}", f"--screenshot={OUT / (name + '.png')}", html.as_uri()],
                    check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     html.unlink()
+    # La tienda exige PNG de 24 bits sin canal alfa.
+    from PIL import Image
+    png = OUT / (name + ".png")
+    Image.open(png).convert("RGB").save(png)
 
 if __name__ == "__main__":
     import sys
@@ -252,6 +290,8 @@ if __name__ == "__main__":
         c = COPY[lang]
         for i, fn in enumerate([s1, s2, s3, s4], 1):
             render(f"screenshot-{i}-{lang}", fn(c, lang), 1280, 800, c)
-        render(f"promo-small-440x280-{lang}", small_tile(c, lang), 440, 280, c)
-        render(f"promo-marquee-1400x560-{lang}", marquee(c, lang), 1400, 560, c)
         print("ok", lang)
+    # Las imágenes promocionales son universales (una sola para todos los idiomas).
+    render("promo-small-440x280", small_tile_uni(), 440, 280, COPY["en"])
+    render("promo-marquee-1400x560", marquee_uni(), 1400, 560, COPY["en"])
+    print("ok promos")
