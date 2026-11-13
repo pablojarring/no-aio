@@ -332,16 +332,38 @@ def lens(cx, cy, r, ring, handle_len, results, scale=1.0):
   <div style="position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 {int(30*scale)}px rgba(15,23,42,.12)"></div>
 </div>"""
 
+def star_path(cx, cy, r):
+    k1, k2 = 0.12, 0.28
+    return (f"M{cx} {cy-r} C{cx+r*k1} {cy-r*k2} {cx+r*k2} {cy-r*k1} {cx+r} {cy} "
+            f"C{cx+r*k2} {cy+r*k1} {cx+r*k1} {cy+r*k2} {cx} {cy+r} "
+            f"C{cx-r*k1} {cy+r*k2} {cx-r*k2} {cy+r*k1} {cx-r} {cy} "
+            f"C{cx-r*k2} {cy-r*k1} {cx-r*k1} {cy-r*k2} {cx} {cy-r}Z")
+
+def ai_cluster(x, y, size, opacity=1.0, rot=0, uid="g"):
+    """Símbolo genérico de IA: un destello grande y dos chicos, con degradado y brillo."""
+    return f"""<svg class="abs" style="left:{x}px;top:{y}px;opacity:{opacity};transform:rotate({rot}deg);filter:drop-shadow(0 0 {size*0.18:.0f}px rgba(167,139,250,.75))"
+ width="{size}" height="{size}" viewBox="0 0 100 100">
+<defs><linearGradient id="{uid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DDD6FE"/><stop offset=".55" stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+<path d="{star_path(42, 58, 38)}" fill="url(#{uid})"/>
+<path d="{star_path(82, 18, 15)}" fill="url(#{uid})"/>
+<path d="{star_path(84, 80, 9)}" fill="url(#{uid})"/></svg>"""
+
 def small_tile_uni():
     return f"""<div class="abs glow" style="inset:0"></div>
-{noise(170, 440, 10, 270, 12, 10, seed=7, scale=.7)}
+{noise(170, 440, 10, 270, 12, 0, seed=7, scale=.7)}
+{ai_cluster(196, 12, 62, .9, -8, "s1")}
+{ai_cluster(392, 196, 40, .75, 10, "s2")}
 {lens(326, 128, 86, 11, 92, [(64, 70), (52, 80), (60, 56)], scale=.62)}
 <div class="abs" style="left:34px;top:40px;width:54px;height:54px;filter:drop-shadow(0 10px 24px rgba(124,58,237,.45))">{ICON}</div>
 <div class="abs word" style="left:32px;top:150px;font-size:60px">No<br>AIO</div>"""
 
 def marquee_uni():
     return f"""<div class="abs glow grid" style="inset:0"></div>
-{noise(600, 1400, 20, 540, 22, 22, seed=11)}
+{noise(600, 1400, 20, 540, 22, 0, seed=11)}
+{ai_cluster(690, 60, 120, .95, -10, "m1")}
+{ai_cluster(1230, 40, 96, .8, 8, "m2")}
+{ai_cluster(1240, 330, 70, .6, -6, "m3")}
+{ai_cluster(700, 380, 64, .5, 12, "m4")}
 {lens(1000, 262, 188, 22, 190, [(62, 72), (50, 84), (66, 58), (56, 76)])}
 <div class="abs" style="left:100px;top:150px;width:96px;height:96px;filter:drop-shadow(0 16px 36px rgba(124,58,237,.5))">{ICON}</div>
 <div class="abs word" style="left:94px;top:270px;font-size:150px">No AIO</div>"""
