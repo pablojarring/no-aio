@@ -254,6 +254,45 @@ def serp(width):
 {SPARK_SM.replace(VIOLET_L, '#FDA4AF')}<div style="flex:1;height:3px;background:{ROSE};border-radius:3px;opacity:.7"></div></div>
 {result(62, 70)}{result(54, 82)}{result(68, 60)}</div></div>"""
 
+def serp_state(width, before):
+    """Página de resultados abstracta en estado 'antes' (bloque de IA grande) o 'después'."""
+    dots = "".join('<b style="width:10px;height:10px;border-radius:50%;background:#CBD5E1;display:block"></b>' for _ in range(3))
+    result = lambda w1, w2: f"""<div style="display:flex;gap:12px;margin-bottom:18px">
+<div style="width:20px;height:20px;border-radius:50%;background:#E2E8F0;flex:none"></div>
+<div style="flex:1"><div class="sk" style="width:38%;height:7px;margin-bottom:7px"></div>
+<div style="width:{w1}%;height:12px;border-radius:6px;background:{VIOLET};margin-bottom:8px"></div>
+<div class="sk" style="width:96%;height:7px;margin-bottom:5px"></div><div class="sk" style="width:{w2}%;height:7px"></div></div></div>"""
+    if before:
+        lines = "".join(f'<div style="width:{w}%;height:8px;border-radius:4px;background:#DDD6FE;margin-bottom:9px"></div>' for w in (92, 86, 95, 70, 88, 93, 60))
+        ai = f"""<div style="border-radius:14px;background:linear-gradient(180deg,#F5F3FF,#EDE9FE);padding:16px 18px;margin-bottom:22px">
+<div style="display:flex;gap:8px;align-items:center;margin-bottom:14px">{SPARK_SM.replace(VIOLET_L, VIOLET)}<div style="width:90px;height:8px;border-radius:4px;background:#C4B5FD"></div></div>
+<div style="display:flex;gap:8px;margin-bottom:14px">{''.join('<div style="flex:1;height:58px;border-radius:8px;background:#DDD6FE"></div>' for _ in range(4))}</div>
+{lines}</div>"""
+        results = result(60, 72)
+    else:
+        ai = f"""<div style="height:28px;border:2px dashed {ROSE};border-radius:12px;display:flex;align-items:center;gap:10px;padding:0 14px;margin-bottom:22px;background:rgba(244,63,94,.05)">
+{SPARK_SM.replace(VIOLET_L, '#FDA4AF')}<div style="flex:1;height:3px;background:{ROSE};border-radius:3px;opacity:.7"></div></div>"""
+        results = result(62, 70) + result(54, 82) + result(68, 60) + result(58, 76)
+    return f"""<div style="width:{width}px;height:520px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.08)">
+<div style="height:32px;background:#F1F5F9;display:flex;gap:8px;align-items:center;padding-left:16px">{dots}</div>
+<div style="padding:22px 26px">
+<div style="height:40px;border-radius:20px;border:1.5px solid #E2E8F0;display:flex;align-items:center;gap:12px;padding:0 16px;margin-bottom:16px">
+<svg width="16" height="16" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7" fill="none" stroke="#94A3B8" stroke-width="2.6"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="#94A3B8" stroke-width="2.6" stroke-linecap="round"/></svg>
+<div class="sk" style="width:46%;height:8px"></div></div>
+<div style="display:flex;gap:16px;margin-bottom:20px"><div style="width:30px;height:7px;border-radius:4px;background:{INK}"></div><div class="sk" style="width:38px;height:7px"></div><div class="sk" style="width:34px;height:7px"></div><div class="sk" style="width:42px;height:7px"></div></div>
+{ai}{results}</div></div>"""
+
+def screenshot_uni():
+    arrow = f"""<svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="{VIOLET}"/>
+<path d="M20 32 H42 M34 23 L43 32 L34 41" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>"""
+    return f"""<div class="abs glow grid" style="inset:0"></div>
+<div class="abs" style="left:80px;top:52px;display:flex;align-items:center;gap:14px">
+<div style="width:46px;height:46px">{ICON}</div><div class="word" style="font-size:40px">No AIO</div></div>
+<div class="abs" style="left:80px;top:136px">{serp_state(500, True)}</div>
+<div class="abs" style="left:608px;top:364px;filter:drop-shadow(0 10px 24px rgba(124,58,237,.5))">{arrow}</div>
+<div class="abs" style="left:700px;top:136px;box-shadow:0 0 0 3px {VIOLET};border-radius:18px">{serp_state(500, False)}</div>
+<div class="abs" style="left:80px;right:80px;top:690px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">{chips(LABELS)}</div>"""
+
 def small_tile_uni():
     return f"""<div class="abs glow grid" style="inset:0"></div>
 <div class="abs" style="left:36px;top:40px;display:flex;align-items:center;gap:16px">
@@ -292,6 +331,7 @@ if __name__ == "__main__":
             render(f"screenshot-{i}-{lang}", fn(c, lang), 1280, 800, c)
         print("ok", lang)
     # Las imágenes promocionales son universales (una sola para todos los idiomas).
+    render("screenshot-0-universal", screenshot_uni(), 1280, 800, COPY["en"])
     render("promo-small-440x280", small_tile_uni(), 440, 280, COPY["en"])
     render("promo-marquee-1400x560", marquee_uni(), 1400, 560, COPY["en"])
     print("ok promos")

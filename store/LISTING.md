@@ -8,7 +8,7 @@ Configura **inglés** como idioma por defecto y agrega como traducciones **espa�
 | Ícono de la tienda | `assets/store-icon-128.png` |
 | Promo tile pequeño (440×280) | `assets/promo-small-440x280.png` (universal, una para todos los idiomas) |
 | Marquee (1400×560, opcional) | `assets/promo-marquee-1400x560.png` (universal) |
-| Capturas (1280×800) | `assets/screenshot-1/2/3/4-<lang>.png` |
+| Capturas (1280×800) | `assets/screenshot-0-universal.png` primero en todos los idiomas, luego `screenshot-1/2/3/4-<lang>.png` |
 | Sitio web oficial | `https://github.com/pablojarring/no-aio` |
 | URL de soporte | `https://github.com/pablojarring/no-aio/issues` |
 | Política de privacidad | `https://pablojarring.github.io/no-aio/privacy/` |
