@@ -1,0 +1,9 @@
+body { font: 13px system-ui, sans-serif; width: 280px; margin: 0; padding: 12px 14px; color: #202124; }
+h1 { font-size: 15px; margin: 0 0 10px; }
+.row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+fieldset { border: 1px solid #dadce0; border-radius: 8px; margin: 8px 0; padding: 6px 10px; }
+legend { padding: 0 4px; color: #5f6368; }
+.opt { display: flex; gap: 8px; align-items: flex-start; padding: 5px 0; }
+.opt span { display: flex; flex-direction: column; }
+.opt small { color: #5f6368; }
+fieldset:disabled { opacity: .5; }

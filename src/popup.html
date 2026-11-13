@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <h1>No AIO</h1>
+
+  <label class="row">
+    <span>Activada</span>
+    <input type="checkbox" id="enabled" />
+  </label>
+
+  <fieldset id="modes">
+    <legend>Modo</legend>
+    <label class="opt">
+      <input type="radio" name="mode" value="hide" />
+      <span><b>Ocultar</b><small>Búsqueda normal, solo se esconde el bloque de IA.</small></span>
+    </label>
+    <label class="opt">
+      <input type="radio" name="mode" value="web" />
+      <span><b>Web (udm=14)</b><small>Redirige al filtro Web: sin IA, sin anuncios de shopping ni paneles.</small></span>
+    </label>
+  </fieldset>
+
+  <label class="row">
+    <span>Ocultar pestaña "Modo IA"</span>
+    <input type="checkbox" id="hideAiMode" />
+  </label>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "no-aio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Extensión de Chrome que oculta el AI Overview de Google",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-manifest.mjs",
+    "test": "node --test test/*.test.mjs",
+    "zip": "npm run build && zip -r no-aio.zip manifest.json src rules icons"
+  },
+  "devDependencies": { "jsdom": "^25.0.0" },
+  "license": "MIT"
+}
