@@ -1,0 +1,35 @@
+{
+  "extName": {
+    "message": "No AIO – Google の「AI による概要」を非表示"
+  },
+  "extDescription": {
+    "message": "Google 検索の「AI による概要」と AI モードのタブを非表示にするか、常にウェブフィルタで検索します。オープンソース、トラッキングなし。"
+  },
+  "on": {
+    "message": "オン"
+  },
+  "mode": {
+    "message": "モード"
+  },
+  "modeHide": {
+    "message": "非表示"
+  },
+  "modeHideDesc": {
+    "message": "通常の検索。AI のブロックだけを隠します。"
+  },
+  "modeWeb": {
+    "message": "ウェブ (udm=14)"
+  },
+  "modeWebDesc": {
+    "message": "常にウェブフィルタで開きます。リンクのみ、AI やショッピング枠なし。"
+  },
+  "hideAiMode": {
+    "message": "「AI モード」タブを非表示"
+  },
+  "footer": {
+    "message": "オープンソース · トラッキングなし"
+  },
+  "extShortName": {
+    "message": "No AIO"
+  }
+}

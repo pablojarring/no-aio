@@ -1,0 +1,35 @@
+{
+  "extName": {
+    "message": "No AIO – скрыть «Обзор от ИИ» в Google"
+  },
+  "extDescription": {
+    "message": "Скрывает «Обзор от ИИ» и вкладку «Режим ИИ» в Google Поиске или всегда открывает веб-фильтр. Открытый код, без слежки."
+  },
+  "on": {
+    "message": "Вкл."
+  },
+  "mode": {
+    "message": "Режим"
+  },
+  "modeHide": {
+    "message": "Скрыть"
+  },
+  "modeHideDesc": {
+    "message": "Обычный поиск, скрыт только блок ИИ."
+  },
+  "modeWeb": {
+    "message": "Веб (udm=14)"
+  },
+  "modeWebDesc": {
+    "message": "Всегда открывать веб-фильтр: только ссылки, без ИИ и блоков покупок."
+  },
+  "hideAiMode": {
+    "message": "Скрыть вкладку «Режим ИИ»"
+  },
+  "footer": {
+    "message": "Открытый код · Без слежки"
+  },
+  "extShortName": {
+    "message": "No AIO"
+  }
+}

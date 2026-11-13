@@ -4,6 +4,8 @@
   "use strict";
 
   // Títulos visibles del bloque AIO según el idioma de la interfaz de Google.
+  // Verificados en google.com (nov 2026): en, es ("visión general creada por ia"),
+  // de, ja, ru, hi. El resto viene de traducciones conocidas.
   // Si en tu idioma no se oculta, agrega aquí el texto exacto del título.
   const AIO_LABELS = [
     "ai overview",
@@ -21,6 +23,7 @@
     "panoramica ai",
     "panoramica creata con l'ai",
     "ai による概要",
+    "ai जवाब",
     "ai 摘要",
     "ai 개요",
     "обзор от ии",

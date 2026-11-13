@@ -1,6 +1,6 @@
 # Store listing: textos para pegar
 
-Configura **inglés** como idioma por defecto y agrega **español** como traducción. En la ficha de cada idioma sube las capturas `screenshot-*-en.png` o `screenshot-*-es.png`.
+Configura **inglés** como idioma por defecto y agrega como traducciones **español, alemán, ruso, japonés e hindi**. En la ficha de cada idioma sube sus 4 capturas `screenshot-1..4-<lang>.png` y sus promo tiles `-<lang>`. Códigos: `en`, `es`, `de`, `ru`, `ja`, `hi`.
 
 | Campo | Valor |
 |---|---|
@@ -8,7 +8,7 @@ Configura **inglés** como idioma por defecto y agrega **español** como traducc
 | Ícono de la tienda | `assets/store-icon-128.png` |
 | Promo tile pequeño (440×280) | `assets/promo-small-440x280-<lang>.png` |
 | Marquee (1400×560, opcional) | `assets/promo-marquee-1400x560-<lang>.png` |
-| Capturas (1280×800) | `assets/screenshot-1/2/3-<lang>.png` |
+| Capturas (1280×800) | `assets/screenshot-1/2/3/4-<lang>.png` |
 | Sitio web oficial | `https://github.com/pablojarring/no-aio` |
 | URL de soporte | `https://github.com/pablojarring/no-aio/issues` |
 | Política de privacidad | `https://pablojarring.github.io/no-aio/privacy/` |
@@ -71,4 +71,108 @@ Licencia MIT. Lee el código, reporta un error o agrega tu idioma:
 https://github.com/pablojarring/no-aio
 
 Hecho por Oniria. No está afiliado ni respaldado por Google. "Google" es una marca registrada de Google LLC.
+```
+
+## Deutsch: ausführliche Beschreibung
+
+```
+No AIO blendet die KI-Übersicht von Google aus, damit die Links, nach denen du suchst, wieder ganz oben stehen.
+
+Google bietet keine Einstellung, um KI-Übersichten abzuschalten. No AIO ist dieser Schalter.
+
+ZWEI MODI
+• Ausblenden (Standard): Die normale Ergebnisseite bleibt – Bilder, Videos, „Weitere Fragen“, Seitenleiste. Nur der KI-Block verschwindet.
+• Web (udm=14): Jede Suche öffnet Googles eigenen Web-Filter, die KI-Zusammenfassung wird gar nicht erst erzeugt. Nur blaue Links, keine Shopping-Blöcke. Standardmäßig aus, aktivierbar im Popup.
+
+AUSSERDEM
+• Blendet optional den Tab „KI-Modus“ aus.
+• Funktioniert auf allen Google-Domains (google.de, google.at, google.ch …).
+• Erkennt den KI-Block an seinem Titel statt an Googles wechselnden CSS-Klassen.
+
+DATENSCHUTZ
+• Sammelt keine Daten, sendet nichts. Keine Analytics, keine Werbung, kein Remote-Code.
+• Läuft nur auf Google-Suchergebnisseiten.
+
+OPEN SOURCE
+MIT-Lizenz: https://github.com/pablojarring/no-aio
+
+Von Oniria. Nicht mit Google verbunden. „Google“ ist eine Marke der Google LLC.
+```
+
+## Русский: подробное описание
+
+```
+No AIO скрывает «Обзор от ИИ» в Google, чтобы ссылки, которые вы искали, снова были наверху.
+
+В Google нет настройки, чтобы отключить обзоры от ИИ. No AIO и есть этот переключатель.
+
+ДВА РЕЖИМА
+• Скрыть (по умолчанию): обычная страница результатов остаётся — картинки, видео, «Вопросы по теме», боковая панель. Пропадает только блок ИИ.
+• Веб (udm=14): каждый поиск открывается в веб-фильтре Google, и сводка ИИ даже не создаётся. Только ссылки, без блоков покупок. По умолчанию выключен, включается в окне расширения.
+
+ТАКЖЕ
+• Можно скрыть вкладку «Режим ИИ».
+• Работает на всех доменах Google (google.ru, google.com, google.kz …).
+• Находит блок ИИ по заголовку, а не по меняющимся CSS-классам Google.
+
+КОНФИДЕНЦИАЛЬНОСТЬ
+• Не собирает и не отправляет никаких данных. Без аналитики, рекламы и удалённого кода.
+• Работает только на страницах результатов Google Поиска.
+
+ОТКРЫТЫЙ КОД
+Лицензия MIT: https://github.com/pablojarring/no-aio
+
+Разработано Oniria. Не связано с Google. «Google» — товарный знак Google LLC.
+```
+
+## 日本語：詳細な説明
+
+```
+No AIO は Google の「AI による概要」を非表示にし、探していたリンクを再びいちばん上に表示します。
+
+Google には AI による概要をオフにする設定がありません。No AIO がそのスイッチになります。
+
+2 つのモード
+• 非表示（デフォルト）：通常の検索結果ページ（画像、動画、「関連する質問」、サイドパネル）はそのまま。AI のブロックだけを消します。
+• ウェブ（udm=14）：すべての検索を Google のウェブフィルタで開くため、AI の要約は生成されません。リンクのみで、ショッピング枠もありません。初期状態はオフで、ポップアップから有効にできます。
+
+その他
+• 「AI モード」タブも非表示にできます。
+• すべての Google ドメイン（google.co.jp、google.com など）で動作します。
+• Google の変わりやすい CSS クラスではなく、見出しで AI ブロックを検出します。
+
+プライバシー
+• データを一切収集・送信しません。分析、広告、リモートコードはありません。
+• Google 検索の結果ページでのみ動作します。
+
+オープンソース
+MIT ライセンス：https://github.com/pablojarring/no-aio
+
+開発：Oniria。Google とは提携していません。「Google」は Google LLC の商標です。
+```
+
+## हिन्दी: विस्तृत विवरण
+
+```
+No AIO, Google का AI जवाब छिपा देता है, ताकि जिन लिंक को आप ढूंढ रहे थे वे फिर से सबसे ऊपर हों।
+
+Google में AI जवाब बंद करने की कोई सेटिंग नहीं है। No AIO वही स्विच है।
+
+दो मोड
+• छिपाएं (डिफ़ॉल्ट): नतीजों का सामान्य पेज बना रहता है — इमेज, वीडियो, “लोग यह भी जानना चाहते हैं”, साइड पैनल। सिर्फ़ AI वाला हिस्सा हटता है।
+• वेब (udm=14): हर सर्च Google के अपने वेब फ़िल्टर में खुलती है, इसलिए AI सारांश बनता ही नहीं। सिर्फ़ लिंक, कोई शॉपिंग ब्लॉक नहीं। डिफ़ॉल्ट रूप से बंद, पॉपअप से चालू करें।
+
+साथ ही
+• “AI मोड” टैब भी छिपा सकते हैं।
+• Google के सभी डोमेन पर काम करता है (google.co.in, google.com …)।
+• AI ब्लॉक को उसके शीर्षक से पहचानता है, Google की बदलती CSS क्लास से नहीं।
+
+प्राइवेसी
+• कोई डेटा इकट्ठा या भेजा नहीं जाता। न एनालिटिक्स, न विज्ञापन, न रिमोट कोड।
+• सिर्फ़ Google सर्च के नतीजों वाले पेज पर चलता है।
+
+ओपन सोर्स
+MIT लाइसेंस: https://github.com/pablojarring/no-aio
+
+Oniria द्वारा बनाया गया। Google से संबद्ध नहीं। “Google”, Google LLC का ट्रेडमार्क है।
 ```

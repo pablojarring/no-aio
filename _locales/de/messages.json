@@ -1,0 +1,35 @@
+{
+  "extName": {
+    "message": "No AIO – Google-KI-Übersicht ausblenden"
+  },
+  "extDescription": {
+    "message": "Blendet die KI-Übersicht und den KI-Modus-Tab der Google-Suche aus oder nutzt immer den Web-Filter. Open Source, kein Tracking."
+  },
+  "on": {
+    "message": "An"
+  },
+  "mode": {
+    "message": "Modus"
+  },
+  "modeHide": {
+    "message": "Ausblenden"
+  },
+  "modeHideDesc": {
+    "message": "Normale Suche, nur der KI-Block wird ausgeblendet."
+  },
+  "modeWeb": {
+    "message": "Web (udm=14)"
+  },
+  "modeWebDesc": {
+    "message": "Immer den Web-Filter öffnen: nur Links, keine KI, keine Shopping-Blöcke."
+  },
+  "hideAiMode": {
+    "message": "Tab „KI-Modus“ ausblenden"
+  },
+  "footer": {
+    "message": "Open Source · Kein Tracking"
+  },
+  "extShortName": {
+    "message": "No AIO"
+  }
+}

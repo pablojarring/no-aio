@@ -62,3 +62,10 @@ test("estructura real (nov 2026): wrapper display:contents con AIO y resultados 
   const { doc, NoAIO } = load(html);
   assert.deepEqual(Array.from(NoAIO.findAioBlocks(doc), (b) => b.id), ["aio"]);
 });
+
+test("detecta los títulos verificados en vivo (en, es, de, ru, ja, hi)", () => {
+  const { NoAIO } = load("<body></body>");
+  for (const t of ["AI Overview", "Visión general creada por IA", "Übersicht mit KI", "Обзор от ИИ", "AI による概要", "AI जवाब"]) {
+    assert.ok(NoAIO.isAioLabel(t), t);
+  }
+});

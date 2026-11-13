@@ -1,0 +1,35 @@
+{
+  "extName": {
+    "message": "No AIO – Google का AI जवाब छिपाएं"
+  },
+  "extDescription": {
+    "message": "Google सर्च में AI जवाब और AI मोड टैब छिपाता है, या हमेशा वेब फ़िल्टर से सर्च करता है। ओपन सोर्स, कोई ट्रैकिंग नहीं।"
+  },
+  "on": {
+    "message": "चालू"
+  },
+  "mode": {
+    "message": "मोड"
+  },
+  "modeHide": {
+    "message": "छिपाएं"
+  },
+  "modeHideDesc": {
+    "message": "सामान्य सर्च, सिर्फ़ AI वाला हिस्सा छिपता है।"
+  },
+  "modeWeb": {
+    "message": "वेब (udm=14)"
+  },
+  "modeWebDesc": {
+    "message": "हमेशा वेब फ़िल्टर खोलें: सिर्फ़ लिंक, न AI, न शॉपिंग ब्लॉक।"
+  },
+  "hideAiMode": {
+    "message": "“AI मोड” टैब छिपाएं"
+  },
+  "footer": {
+    "message": "ओपन सोर्स · कोई ट्रैकिंग नहीं"
+  },
+  "extShortName": {
+    "message": "No AIO"
+  }
+}
