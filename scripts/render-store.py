@@ -293,20 +293,58 @@ def screenshot_uni():
 <div class="abs" style="left:700px;top:180px;box-shadow:0 0 0 3px {VIOLET};border-radius:18px">{serp_state(500, False)}</div>
 """
 
+import random
+
+def noise(x0, x1, y0, y1, n_lines, n_sparks, seed, scale=1.0):
+    """Ruido de IA: bloques de texto lavanda desenfocados y destellos dispersos."""
+    rnd = random.Random(seed)
+    out = []
+    y = y0
+    while y < y1 and n_lines:
+        w = rnd.randint(int(120 * scale), int(420 * scale))
+        x = rnd.randint(x0, max(x0, x1 - w))
+        out.append(f'<div class="abs" style="left:{x}px;top:{y}px;width:{w}px;height:{int(9*scale)}px;border-radius:6px;'
+                   f'background:rgba(196,181,253,{rnd.uniform(.10,.24):.2f});filter:blur({1.5*scale:.1f}px)"></div>')
+        y += int(rnd.randint(18, 26) * scale); n_lines -= 1
+    for _ in range(n_sparks):
+        sz = rnd.randint(int(10 * scale), int(30 * scale))
+        x, yy = rnd.randint(x0, x1), rnd.randint(y0, y1)
+        out.append(f'<div class="abs" style="left:{x}px;top:{yy}px;width:{sz}px;height:{sz}px;opacity:{rnd.uniform(.25,.8):.2f}">'
+                   f'{SPARK.replace("width=\"20\" height=\"20\"", "width=\"100%\" height=\"100%\"")}</div>')
+    return "".join(out)
+
+def lens(cx, cy, r, ring, handle_len, results, scale=1.0):
+    """La lupa del logo como ventana: adentro, resultados limpios."""
+    d = 2 * r
+    res = "".join(f"""<div style="display:flex;gap:{int(12*scale)}px;margin-bottom:{int(16*scale)}px">
+<div style="width:{int(20*scale)}px;height:{int(20*scale)}px;border-radius:50%;background:#E2E8F0;flex:none"></div>
+<div style="flex:1"><div class="sk" style="width:36%;height:{int(7*scale)}px;margin-bottom:{int(6*scale)}px"></div>
+<div style="width:{w}%;height:{int(12*scale)}px;border-radius:6px;background:{VIOLET};margin-bottom:{int(7*scale)}px"></div>
+<div class="sk" style="width:94%;height:{int(7*scale)}px;margin-bottom:{int(5*scale)}px"></div><div class="sk" style="width:{w2}%;height:{int(7*scale)}px"></div></div></div>"""
+                  for w, w2 in results)
+    hx, hy = cx + r * 0.72, cy + r * 0.72
+    return f"""<div class="abs" style="left:{hx - ring*0.9:.0f}px;top:{hy - ring*0.9:.0f}px;width:{handle_len}px;height:{ring*1.8:.0f}px;border-radius:{ring}px;
+  background:#F8FAFC;transform-origin:{ring*0.9:.0f}px 50%;transform:rotate(45deg);box-shadow:0 20px 40px rgba(0,0,0,.35)"></div>
+<div class="abs" style="left:{cx - r - ring}px;top:{cy - r - ring}px;width:{d + 2*ring}px;height:{d + 2*ring}px;border-radius:50%;background:#F8FAFC;
+  box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.2),0 0 120px rgba(124,58,237,.35)"></div>
+<div class="abs" style="left:{cx - r}px;top:{cy - r}px;width:{d}px;height:{d}px;border-radius:50%;overflow:hidden;background:#fff">
+  <div style="position:absolute;left:{int(r*0.32)}px;right:{int(r*0.22)}px;top:{int(r*0.42)}px">{res}</div>
+  <div style="position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 {int(30*scale)}px rgba(15,23,42,.12)"></div>
+</div>"""
+
 def small_tile_uni():
-    return f"""<div class="abs glow grid" style="inset:0"></div>
-<div class="abs" style="left:36px;top:40px;display:flex;align-items:center;gap:16px">
-<div style="width:68px;height:68px;filter:drop-shadow(0 10px 24px rgba(124,58,237,.45))">{ICON}</div>
-<div class="word" style="font-size:58px">No AIO</div></div>
-<div class="abs" style="left:36px;top:140px;width:380px;display:flex;flex-wrap:wrap;gap:9px">{chips(LABELS[:1] + LABELS[2:5])}</div>
-<div class="abs" style="left:36px;right:36px;bottom:30px;height:2px;background:linear-gradient(90deg,{VIOLET},transparent)"></div>"""
+    return f"""<div class="abs glow" style="inset:0"></div>
+{noise(170, 440, 10, 270, 12, 10, seed=7, scale=.7)}
+{lens(326, 128, 86, 11, 92, [(64, 70), (52, 80), (60, 56)], scale=.62)}
+<div class="abs" style="left:34px;top:40px;width:54px;height:54px;filter:drop-shadow(0 10px 24px rgba(124,58,237,.45))">{ICON}</div>
+<div class="abs word" style="left:32px;top:150px;font-size:60px">No<br>AIO</div>"""
 
 def marquee_uni():
     return f"""<div class="abs glow grid" style="inset:0"></div>
-<div class="abs" style="left:100px;top:120px;width:96px;height:96px;filter:drop-shadow(0 16px 36px rgba(124,58,237,.5))">{ICON}</div>
-<div class="abs word" style="left:96px;top:236px;font-size:132px">No AIO</div>
-<div class="abs" style="left:100px;top:396px;width:620px;display:flex;flex-wrap:wrap;gap:10px">{chips(LABELS)}</div>
-<div class="abs" style="left:770px;top:70px;transform:rotate(-2deg)">{serp(540)}</div>"""
+{noise(600, 1400, 20, 540, 22, 22, seed=11)}
+{lens(1000, 262, 188, 22, 190, [(62, 72), (50, 84), (66, 58), (56, 76)])}
+<div class="abs" style="left:100px;top:150px;width:96px;height:96px;filter:drop-shadow(0 16px 36px rgba(124,58,237,.5))">{ICON}</div>
+<div class="abs word" style="left:94px;top:270px;font-size:150px">No AIO</div>"""
 
 def render(name, body, w, h, c):
     html = SRC / f"{name}.html"
